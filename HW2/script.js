@@ -21,35 +21,34 @@ class Timer {
         stopBtn = document.createElement("button");
         cancelBtn = document.createElement("button");
         lapBtn = document.createElement("button");
-        btns.classList.add("btn-group")
-        hook.appendChild(btns)
+        btns.classList.add("btn-group");
+        hook.appendChild(btns);
 
-        startBtn.innerText = "START"
-        startBtn.addEventListener("click",this.update)
-        btns.appendChild(startBtn)
+        startBtn.innerText = "START";
+        startBtn.addEventListener("click",this.update);
+        btns.appendChild(startBtn);
 
         stopBtn.innerText = "PAUSE"
-        stopBtn.addEventListener("click",this.pause)
+        stopBtn.addEventListener("click",this.pause);
         stopBtn.disabled = true;
-        btns.appendChild(stopBtn)
+        btns.appendChild(stopBtn);
 
-        cancelBtn.innerText = "STOP"
-        cancelBtn.addEventListener("click",this.cancel)
+        cancelBtn.innerText = "STOP";
+        cancelBtn.addEventListener("click",this.cancel);
         cancelBtn.disabled = true;
-        btns.appendChild(cancelBtn)
+        btns.appendChild(cancelBtn);
 
-        lapBtn.innerText = "LAP"
-        lapBtn.addEventListener("click",this.lap)
+        lapBtn.innerText = "LAP";
+        lapBtn.addEventListener("click",this.lap);
         lapBtn.disabled = true;
-        btns.appendChild(lapBtn)
+        btns.appendChild(lapBtn);
     }
-    
     update(){
         startBtn.disabled = true;
         lapBtn.disabled = false;
         cancelBtn.disabled = false;
         timeIsRunning = true;
-        stopBtn.disabled = timeIsRunning ? false : true
+        stopBtn.disabled = timeIsRunning ? false : true;
         timer = setInterval(()=>{
             counter++;
             mseconds++;
@@ -59,12 +58,11 @@ class Timer {
             }
             if(counter % 600 === 0){
                 seconds = 0;
-                minutes++
+                minutes++;
             }
-            msec.innerText = String(mseconds)
-            sec.innerText = String(seconds).padStart(2,"0")
-            min.innerText = String(minutes).padStart(2,"0")
-
+            msec.innerText = String(mseconds);
+            sec.innerText = String(seconds).padStart(2,"0");
+            min.innerText = String(minutes).padStart(2,"0");
         },100)
     }
     pause(){
@@ -91,10 +89,10 @@ class Timer {
         startBtn.disabled = timeIsRunning ? true : false;
     }
     lap(){
-        const lap = createLap(min.innerText, sec.innerText, msec.innerText)
-        laps.appendChild(lap)
-        
+        const lap = createLap(min.innerText, sec.innerText, msec.innerText);
+        laps.appendChild(lap);
     }
 }
 
 new Timer("stopWatch").render()
+
