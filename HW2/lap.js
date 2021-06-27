@@ -1,5 +1,13 @@
-function createLap(mins, secs, msecs){
-    const lap = document.createElement("p");
-    lap.innerText = `${mins}:${secs}:${msecs}`;
-    return lap
+class Lap{
+    constructor(min,sec,msec){
+        this.min = min;
+        this.sec = sec;
+        this.msec = msec;
+    }
+    render(){
+        const lap = document.createElement("p");
+        lap.addEventListener("click", e => e.target.remove())
+        lap.innerText = `${this.min}:${this.sec}:${this.msec}`;
+        return lap
+    }
 }
