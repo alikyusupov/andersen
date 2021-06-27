@@ -14,7 +14,7 @@ class Timer {
         this.btns = document.createElement("div");
         this.lapHolder = document.createElement("div");
         this.timer;
-        this.laps = [];
+        this.laps = JSON.parse(localStorage.getItem("laps"))||[];
     }
     render(){
         //Display group
@@ -111,14 +111,17 @@ class Timer {
         this.lapBtn.disabled = this.timeIsRunning ? false : true;
         this.startBtn.disabled = this.timeIsRunning ? true : false;
         this.laps = [];
+        localStorage.removeItem("laps")
     }
     createLap(){
-        this.laps.push(new Lap(this.minutes, this.seconds, this.mseconds).render())
+        this.laps.push({mins:this.minutes,secs:this.seconds,msecs:this.mseconds});
+        localStorage.setItem("laps",JSON.stringify(this.laps));
         this.showLap()
     }
     showLap(){
+        this.lapHolder.innerHTML = "";
         for(let lap of this.laps){
-            this.hook.querySelector(".footer").append(lap);
+            this.hook.querySelector(".footer").append(new Lap(lap.mins, lap.secs, lap.msecs).render());
         }
     }
 }
