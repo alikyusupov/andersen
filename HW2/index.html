@@ -8,16 +8,33 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <span id="min">00</span>:
-        <span id="sec">00</span>:
-        <span id="msec">0</span>
+    <!--<header>
+        <span>00</span>:
+        <span>00</span>:
+        <span>0</span>
     </header>
     <main id="stopWatch"></main>
-    <footer id="laps">
+    <footer class="laps">
 
-    </footer>
-    <script src="./script.js"></script>
-    <script src="./lap.js"></script>
+    </footer>-->
+    <main id="container">
+       
+    </main>
+
+    <section style="display: flex;justify-content: center;margin-top: 20px;">
+        <span class="customBtn" onclick="addStopWatch()">Добавить секундомер</span>
+    </section>
+
+    <script src="./Timer.js"></script>
+    <script src="./Lap.js"></script>
+    <script>
+        let nameCounter = 0;
+        const addStopWatch = ()=>{
+            let parentElem = document.createElement("div");
+            parentElem.id = `stopWatch${++nameCounter}`;
+            document.getElementById("container").append(parentElem);
+            new Timer(parentElem.id).render();
+        }
+    </script>
 </body>
 </html>
